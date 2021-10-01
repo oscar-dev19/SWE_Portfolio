@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import pickle
 import traceback
 import json
@@ -18,6 +18,10 @@ model = load_model('apple_orangeclassifier.mdl')
 def hello():
     return "Welcome to my apple/orange classifier model API"
 
+@app.route('/docs')
+def get_documentation():    
+	return render_template('documentation.html')
+	
 
 @app.route('/predict', methods=['POST'])
 def predict():
